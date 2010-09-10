@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009 the original author or authors
+ * Copyright (c) 2009, 2010 lolvision
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,28 +23,44 @@
 package
 {
 	import flash.display.Sprite;
+	import flash.utils.Dictionary;
 	
 	/**
-	 * Brute
-	 * 
-	 * <p>An AS3 Framework / Wrecking Ball</p>
-	 * 
+	 * The Brute Framework (A Wrecking Ball)
+	 *
+	 * If you're going to screw around with statics you may as well go all the way!
+	 *
 	 * @author lolvision
 	 */
 	public dynamic class Brute extends Sprite
 	{
-		protected static const LOCK:Number = Math.random() * Number.MAX_VALUE;
+		protected static const instances:Dictionary = new Dictionary();
 		
-		protected static var _instance:Brute;
-		
-		public function Brute(lock:Number)
+		public static function get(key:Object = ''):Brute
 		{
-			if (lock != LOCK) throw Error(LOCK);
+			return instances[key] ||= new Brute();
 		}
 		
-		public static function get instance():Brute
+		public static function has(key:Object = ''):Boolean
 		{
-			return _instance || (_instance = new Brute(LOCK))
+			return instances[key];
+		}
+		
+		public static function destroy(key:Object = ''):void
+		{
+			delete instances[key];
+		}
+		
+		protected static function destroyInstance(brute:Brute):void
+		{
+			for (var key:Object in instances)
+				if (instances[key] == brute)
+					destroy(key);
+		}
+		
+		public function destroy():void
+		{
+			destroyInstance(this);
 		}
 	}
 }
