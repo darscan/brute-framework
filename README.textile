@@ -6,23 +6,23 @@ If you're going to screw around with statics you may as well go ALL THE WAY.
 
 h3. Usage
 
-h4. Multiton Access
+No imports, just grab a Brute:
 
 <pre>
-  Brute.get('MyApp').something = "yo!";
+Brute.get('MyApp').something = "hello world!";
 </pre>
 
-h4. Each Brute is a Dynamic Sprite (oh sick!)
+Each Brute is a Dynamic Sprite (oh sick!):
 
 <pre>
-  var brute:Brute = Brute.get('MyApp');
-  
-	brute.something = "hi";
-	
-	brute.addEventListener('boom!', function(e:Event):void {
-		trace(e.target.something);
-	});
-	brute.dispatchEvent(new Event('boom!'));
+var brute:Brute = Brute.get('MyApp');
+
+brute.something = "hi";
+
+brute.addEventListener('boom!', function(e:Event):void {
+  trace(e.target.something);
+});
+brute.dispatchEvent(new Event('boom!'));
 </pre>
 
 h3. Disclaimer
