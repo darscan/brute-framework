@@ -4,6 +4,10 @@ h3. Intro
 
 If you're going to screw around with statics you may as well go ALL THE WAY.
 
+h3. Installation
+
+Drop Brute.as into your source path.
+
 h3. Usage
 
 No imports, just grab a Brute:
